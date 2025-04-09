@@ -1,0 +1,11 @@
+services:
+  musicbot:
+    container_name: musicbot
+    build:
+      context: .
+      args:
+        # musicbot config
+        MUSICBOT_TOKEN: $MUSICBOT_TOKEN
+        MUSICBOT_OWNER: $MUSICBOT_OWNER
+        MUSICBOT_PREFIX: $MUSICBOT_PREFIX
+    restart: unless-stopped
