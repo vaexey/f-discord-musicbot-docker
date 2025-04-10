@@ -1,10 +1,18 @@
 import requests
 
-# Stable release:
-# releases = requests.get('https://api.github.com/repos/jagrosh/MusicBot/releases/latest').json()
+repository = 'jagrosh/MusicBot'
+version = 'latest'
 
-# SeVile fork:
-releases = requests.get('https://api.github.com/repos/SeVile/MusicBot/releases/latest').json()
+try:
+    with open('github.conf', 'r') as repo_file:
+        repo_config = repo_file.read().split(',', 1)
 
-latest_release = releases['assets'][0]['browser_download_url']
-print(latest_release)
+        repository = repo_config[0]
+        version = repo_config[1]
+except IOError:
+    pass
+
+releases = requests.get(f'https://api.github.com/repos/{repository}/releases/{version}').json()
+
+release_url = releases['assets'][0]['browser_download_url']
+print(release_url)

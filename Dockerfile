@@ -9,6 +9,7 @@ RUN apt install -y openjdk-11-jre wget python3 python3-requests
 
 COPY config.txt config.txt
 COPY latest_release.py latest_release.py
+COPY github.conf github.conf
 
 RUN sed -i 's/##token/'$MUSICBOT_TOKEN'/g' config.txt
 RUN sed -i 's/##owner/'$MUSICBOT_OWNER'/g' config.txt
